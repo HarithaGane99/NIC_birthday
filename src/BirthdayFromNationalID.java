@@ -3,16 +3,21 @@ import java.util.Scanner;
 
 public class BirthdayFromNationalID {
 
+    static  String gender;
+    static int number;
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter the 12-digit National ID: ");
         String nationalID = scanner.next();
 
+        char ch = nationalID.charAt(4);
+        if (Character.isDigit(ch)) {
+            number = Character.getNumericValue(ch);
+        }
 
 
-        System.out.print("Enter your Gender"+" Male or Female: ");
-        String gender=scanner.next();
+
         scanner.close();
 
         if (nationalID.length() != 12) {
@@ -20,7 +25,9 @@ public class BirthdayFromNationalID {
             return;
         }
 
-        if(gender.equals("Female")){
+        if(number>=5){
+            gender="Female";
+
             int year = Integer.parseInt(nationalID.substring(0, 4));
             int dayOfYear = Integer.parseInt(nationalID.substring(4, 7));
             dayOfYear=dayOfYear-500;
@@ -29,7 +36,8 @@ public class BirthdayFromNationalID {
 
             System.out.println("Birthdate: " +year +"-"+birthdate.getMonthValue() + "-" + birthdate.getDayOfMonth());
 
-        } else if (gender.equals("Male")) {
+        } else  {
+            gender="Male";
             int year = Integer.parseInt(nationalID.substring(0, 4));
             int dayOfYear = Integer.parseInt(nationalID.substring(4, 7));
 
